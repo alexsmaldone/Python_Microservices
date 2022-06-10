@@ -14,6 +14,9 @@ class Product(HashModel):
   price: float
   quantity: int
 
-@app.get("/")
-async def root():
-    return {"message": "This is working"}
+  class Meta:
+    database = redis
+
+@app.get('/products')
+def all():
+  return []
