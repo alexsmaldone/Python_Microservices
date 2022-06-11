@@ -40,5 +40,17 @@ async def create(request: Request): # id and quantity
   body = await request.json()
 
   req = requests.get('http://localhost:8000/products/%s' % body['id'])
+  product = req.json()
 
-  return req.json()
+  order = Order(
+    product_id=body['id'],
+    price=product['price'],
+    fee=0.2 * product['price'],
+    total=1.2 * product['price'],
+    quantity=body['quantity'],
+    status='pending'
+  )
+
+  order.save()
+
+  return order
