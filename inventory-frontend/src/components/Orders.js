@@ -1,23 +1,64 @@
+import { useEffect, useState } from "react";
 import React from "react";
 
 function Orders() {
+  const [id, setId] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [message, setMessage] = useState("Buy your favorite products");
+
+  useEffect(() => {
+    (async () => {
+      try {
+        if (id) {
+          const response = await fetch(`http://localhost:8000/products/${id}`);
+          const content = await response.json();
+          setMessage(`Your product price is ${content.price}`);
+        }
+      } catch (e) {
+        setMessage("Buy your favorite product");
+      }
+    })();
+  }, [id]);
+
+  const submit = async (e) => {
+    e.preventDefault();
+
+    await fetch("http://localhost:8001/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id,
+        quantity,
+      }),
+    });
+
+    setMessage("Thank you for your order!");
+  };
+
   return (
     <div className="container">
       <main>
         <div className="py-5 text-center">
           <h2>Checkout Form</h2>
-          <p className="lead">Buy your favorite product</p>
+          <p className="lead">{message}</p>
         </div>
 
-        <form>
+        <form onSubmit={submit}>
           <div className="row g-3">
             <div className="col-sm-6">
               <label className="form-label">Product</label>
-              <input className="form-control" />
+              <input
+                className="form-control"
+                onChange={(e) => setId(e.target.value)}
+              />
             </div>
             <div className="col-sm-6">
               <label className="form-label">Quantity</label>
-              <input type="number" className="form-control" />
+              <input
+                type="number"
+                className="form-control"
+                onChange={(e) => setQuantity(e.target.value)}
+              />
             </div>
           </div>
           <hr className="my-4" />
