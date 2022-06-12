@@ -1,11 +1,13 @@
 import React from "react";
 import Wrapper from "./Wrapper";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ProductsCreate() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
+  const navigate = useNavigate();
 
   const submit = async (e) => {
     e.preventDefault();
@@ -19,6 +21,8 @@ function ProductsCreate() {
         quantity,
       }),
     });
+
+    await navigate(-1);
   };
 
   return (
