@@ -26,38 +26,14 @@ function App() {
               <ul class="nav flex-column">
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="#">
-                    <span data-feather="home" class="align-text-bottom"></span>
-                    Dashboard
+                    Products
                   </a>
                 </li>
               </ul>
             </div>
           </nav>
 
-          <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="table-responsive">
-              <table class="table table-striped table-sm">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Header</th>
-                    <th scope="col">Header</th>
-                    <th scope="col">Header</th>
-                    <th scope="col">Header</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1,001</td>
-                    <td>random</td>
-                    <td>data</td>
-                    <td>placeholder</td>
-                    <td>text</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </main>
+          <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"></main>
         </div>
       </div>
     </div>
