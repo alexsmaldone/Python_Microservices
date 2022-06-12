@@ -12,7 +12,8 @@ function Orders() {
         if (id) {
           const response = await fetch(`http://localhost:8000/products/${id}`);
           const content = await response.json();
-          setMessage(`Your product price is ${content.price}`);
+          const price = parseFloat(content.price) * 1.2;
+          setMessage(`Your product price is $${price}`);
         }
       } catch (e) {
         setMessage("Buy your favorite product");
