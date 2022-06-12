@@ -7,9 +7,23 @@ function ProductsCreate() {
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
 
+  const submit = async (e) => {
+    e.preventDefault();
+
+    await fetch("http://localhost:8000/products", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        price,
+        quantity,
+      }),
+    });
+  };
+
   return (
     <Wrapper>
-      <form className="mt-3">
+      <form className="mt-3" onSubmit={submit}>
         <div className="form-floating pb-3">
           <input
             className="form-control"
